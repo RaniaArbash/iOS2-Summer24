@@ -7,8 +7,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSource {
+    
+    
+    @IBOutlet weak var calculationTable: UITableView!
+    
+    
+    var calculationArray = [String]()
+    
     var counter: Int? = 9
     var number1: Int = 0
     var number2 : Int = 0
@@ -19,6 +25,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        calculationTable.delegate = self
+        calculationTable.dataSource = self
        
         
     }
@@ -70,12 +79,40 @@ class ViewController: UIViewController {
             case .some(_):
                 break
             }
+            var calculation = "\(number1) \(title!) \(number2) = \(result)"
+            calculationArray.append(calculation)
+            calculationTable.reloadData()
             resultLabel.text = "\(result)"
         }else {
             resultLabel.text = "Incorrect Input!!"
         }
     }
         
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return calculationArray.count
+        
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int{
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        var cell = UITableViewCell()
+        cell.textLabel?.text = calculationArray[indexPath.row]
+        return cell
+    }
+    
     }
 
 
