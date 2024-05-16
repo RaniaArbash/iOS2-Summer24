@@ -62,8 +62,19 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
         return isvalid
     }
     
-    @IBAction func op(_ sender: UIButton) {
+    
+    
+    
+    @IBAction func clearBut(_ sender: Any) {
+        resultLabel.text = ""
+        firstNumberText.text = ""
+        secondNumberText.text = ""
         
+    }
+    
+    
+    @IBAction func op(_ sender: UIButton) {
+        // if
         var title = sender.titleLabel?.text
         var result : Int = 0
         if isValid() {
