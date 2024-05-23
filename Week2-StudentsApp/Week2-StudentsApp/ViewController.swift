@@ -7,9 +7,16 @@
 
 import UIKit
 
+
+protocol AddingStudentDelegateProtocol{
+    func addingDidFinishedCorrectly(newStd: Student)
+    func addingDidCancled()
+}
+
+
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    
+    var delegate:AddingStudentDelegateProtocol?
     
     @IBOutlet weak var semesterPicker: UIPickerView!
     
@@ -49,15 +56,18 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return listOdSemesters[row]
     }
     
+   
+    
+    @IBAction func cancelClicked(_ sender: Any) {
+        delegate?.addingDidCancled()
+        dismiss(animated: true)
+    }
+    
     
     @IBAction func saveNewStudent(_ sender: Any) {
         
         var selectedSemesterID = semesterPicker.selectedRow(inComponent: 0)
-        
-        
-//        guard <#condition#> else {
-//            <#statements#>
-//        }
+
         
         if let goodID = stdID.text {
             if let goodName = stdName.text {
@@ -68,8 +78,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                             if !goodProgram.isEmpty {
                                 if let goodInt = Int(goodID) {
                                     var newStudent = Student(ID: goodInt , name: goodName, program: goodProgram, semester: listOdSemesters[selectedSemesterID])
-                                    (UIApplication.shared.delegate as! AppDelegate).allStudents.append(newStudent)
-                                    clearAllFields()
+                                    
+                                    delegate?.addingDidFinishedCorrectly(newStd: newStudent)
+                                    
+                                    dismiss(animated: true)
+
                                     
                                 }
                             }

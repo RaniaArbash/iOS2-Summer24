@@ -7,7 +7,8 @@
 
 import UIKit
 
-class AllStudentsTableViewController: UITableViewController {
+class AllStudentsTableViewController: UITableViewController, AddingStudentDelegateProtocol {
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +17,12 @@ class AllStudentsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var vc = segue.destination as! ViewController
+        vc.delegate = self
+        
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -36,6 +43,16 @@ class AllStudentsTableViewController: UITableViewController {
     }
     
 
+    
+    func addingDidFinishedCorrectly(newStd: Student) {
+        (UIApplication.shared.delegate as! AppDelegate).allStudents.append(newStd)
+        tableView.reloadData()
+    }
+    
+    func addingDidCancled() {
+        
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
