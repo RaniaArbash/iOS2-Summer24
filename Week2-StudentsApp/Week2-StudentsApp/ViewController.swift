@@ -14,10 +14,13 @@ protocol AddingStudentDelegateProtocol{
 }
 
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ViewController: UIViewController, UIPickerViewDelegate,  UINavigationControllerDelegate , UIImagePickerControllerDelegate,  UIPickerViewDataSource {
+    
+    
+    @IBOutlet weak var std_img: UIImageView!
     
     var delegate:AddingStudentDelegateProtocol?
-    
+    var studentImage = UIImage(named: "nophoto")
     var std_ID: Int = 0
     var std_program = ""
     var std_name = ""
@@ -60,6 +63,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return listOdSemesters[row]
     }
     
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
+        print("The user did not select any image")
+        dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
+        
+        if let image = info[.originalImage] as? UIImage {
+            std_img.image = image
+            studentImage = std_img.image
+            dismiss(animated: true)
+        }
+        
+        
+    }
     
     
     @IBAction func cancelClicked(_ sender: Any) {
@@ -98,24 +116,48 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     
     
+    @IBAction func takeAPhoto(_ sender: Any) {
+        let c = UIImagePickerController()
+        c.sourceType = UIImagePickerController.isSourceTypeAvailable(.camera) ? .camera : .photoLibrary
+        c.delegate = self
+        c.allowsEditing = false
+        
+        present(c, animated: true, completion: nil)
+
+    }
+    
+    
+    
+    @IBAction func pickAnImage(_ sender: Any) {
+        let c = UIImagePickerController()
+        c.sourceType = .photoLibrary
+        c.delegate = self
+        c.allowsEditing = false
+        
+        present(c, animated: true, completion: nil)
+
+        
+    }
+    
     @IBAction func saveNewStudent(_ sender: Any) {
         
-        var selectedSemesterID = semesterPicker.selectedRow(inComponent: 0)
+        let selectedSemesterID = semesterPicker.selectedRow(inComponent: 0)
         
         if (isValidInput()){
             let newStudent = Student(ID: std_ID , name: std_name, program: std_program, semester: listOdSemesters[selectedSemesterID])
+            newStudent.image = studentImage
             
             delegate?.addingDidFinishedCorrectly(newStd: newStudent)
             dismiss(animated: true)
         }else {
             // display an alert
-            var alert = UIAlertController(title: "Input Error!", message: "One or more value is not correct", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Input Error!", message: "One or more value is not correct", preferredStyle: .actionSheet)
             
-            var alertAction = UIAlertAction(title: "OK", style: .destructive) { alert in
+            let alertAction = UIAlertAction(title: "OK", style: .destructive) { alert in
                 print("OK clicked")
                 
             }
-            var alertAction2 = UIAlertAction(title: "Cancel", style: .cancel) { alert in
+            let alertAction2 = UIAlertAction(title: "Cancel", style: .cancel) { alert in
                 print("Cancel Clicked")
             }
             
@@ -127,14 +169,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         
     }
-
-        
-        
-        
-        
-    
-    
-    
     
     func clearAllFields(){
         

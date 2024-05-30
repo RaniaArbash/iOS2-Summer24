@@ -31,16 +31,28 @@ class AllStudentsTableViewController: UITableViewController, AddingStudentDelega
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        cell.textLabel?.text = (UIApplication.shared.delegate as! AppDelegate).allStudents[indexPath.row].name
-        cell.detailTextLabel?.text = (UIApplication.shared.delegate as! AppDelegate).allStudents[indexPath.row].semester
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! StudentTableViewCell
         
-
+        
+        cell.stdImage.layer.cornerRadius = 20;
+        cell.stdImage.clipsToBounds = true;
+        
+        cell.stdName.text = (UIApplication.shared.delegate as! AppDelegate).allStudents[indexPath.row].name
+        
+        cell.stdID.text = "\((UIApplication.shared.delegate as! AppDelegate).allStudents[indexPath.row].ID)"
+       
+        cell.stdProgram.text = (UIApplication.shared.delegate as! AppDelegate).allStudents[indexPath.row].program
+        
+        cell.stdImage.image = (UIApplication.shared.delegate as! AppDelegate).allStudents[indexPath.row].image
+        
         return cell
     }
     
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
     
     func addingDidFinishedCorrectly(newStd: Student) {
         (UIApplication.shared.delegate as! AppDelegate).allStudents.append(newStd)
@@ -49,6 +61,22 @@ class AllStudentsTableViewController: UITableViewController, AddingStudentDelega
     
     func addingDidCancled() {
         
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        var mes = "\((UIApplication.shared.delegate as! AppDelegate).allStudents[indexPath.row].ID) - \((UIApplication.shared.delegate as! AppDelegate).allStudents[indexPath.row].name) - \((UIApplication.shared.delegate as! AppDelegate).allStudents[indexPath.row].program) - \((UIApplication.shared.delegate as! AppDelegate).allStudents[indexPath.row].semester)"
+        
+        let alert = UIAlertController(title: "Student Info", message:
+                                        mes
+                                      , preferredStyle: .alert)
+        
+        let alertAction = UIAlertAction(title: "OK", style: .destructive) { alert in
+            print("OK clicked")
+        }
+        alert.addAction(alertAction)
+        present(alert, animated: true)
+    
     }
     
     /*

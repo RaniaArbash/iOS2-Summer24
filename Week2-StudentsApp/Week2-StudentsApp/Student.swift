@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Student {
     // 1- add YOB
@@ -13,6 +14,7 @@ class Student {
     var name : String
     var program : String
     var semester : String
+    var image: UIImage?
     
     init() {
         ID = 0
