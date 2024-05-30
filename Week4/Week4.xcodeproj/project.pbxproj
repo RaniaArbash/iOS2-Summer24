@@ -14,6 +14,7 @@
 		212A77D92C08AF0D00F8177E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 212A77D82C08AF0D00F8177E /* Base */; };
 		212A77E12C08AF4F00F8177E /* ColorsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A77E02C08AF4F00F8177E /* ColorsTableViewController.swift */; };
 		212A77E32C08B00000F8177E /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A77E22C08B00000F8177E /* ColorModel.swift */; };
+		212A77E52C08B39300F8177E /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212A77E42C08B39300F8177E /* ColorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		212A77DA2C08AF0D00F8177E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		212A77E02C08AF4F00F8177E /* ColorsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsTableViewController.swift; sourceTree = "<group>"; };
 		212A77E22C08B00000F8177E /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
+		212A77E42C08B39300F8177E /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				212A77DA2C08AF0D00F8177E /* Info.plist */,
 				212A77E02C08AF4F00F8177E /* ColorsTableViewController.swift */,
 				212A77E22C08B00000F8177E /* ColorModel.swift */,
+				212A77E42C08B39300F8177E /* ColorViewController.swift */,
 			);
 			path = Week4;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 				212A77CD2C08AF0C00F8177E /* AppDelegate.swift in Sources */,
 				212A77CF2C08AF0C00F8177E /* SceneDelegate.swift in Sources */,
 				212A77E12C08AF4F00F8177E /* ColorsTableViewController.swift in Sources */,
+				212A77E52C08B39300F8177E /* ColorViewController.swift in Sources */,
 				212A77E32C08B00000F8177E /* ColorModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +300,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S92YL3K843;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Week4/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -303,6 +308,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,6 +329,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S92YL3K843;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Week4/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -330,6 +337,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

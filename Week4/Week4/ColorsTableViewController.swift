@@ -9,7 +9,8 @@ import UIKit
 
 class ColorsTableViewController: UITableViewController {
 
-    var colorsList : [ColorModel] = [ ColorModel(n: "Red",c: UIColor.red),
+    // UIColor(_colorLiteralRed: 78, green: 92, blue: 115, alpha: 0.4)
+    var colorsList : [ColorModel] = [ ColorModel(n: "Red",c: UIColor(red: 87, green: 92, blue: 115, alpha: 1)),
                                       ColorModel(n: "Green",c: UIColor.green),
                                       ColorModel(n: "Blue",c: UIColor.blue),
                                       ColorModel(n: "Pink",c: UIColor.systemPink),
@@ -78,14 +79,16 @@ class ColorsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+       
+       var cvc = segue.destination as! ColorViewController
+    
+        cvc.colorFromFirstViewController = colorsList[(tableView.indexPathForSelectedRow?.row)!]
     }
-    */
+    
 
 }
