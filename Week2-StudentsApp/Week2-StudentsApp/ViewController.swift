@@ -15,8 +15,12 @@ protocol AddingStudentDelegateProtocol{
 
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
     var delegate:AddingStudentDelegateProtocol?
+    
+    var std_ID: Int = 0
+    var std_program = ""
+    var std_name = ""
     
     @IBOutlet weak var semesterPicker: UIPickerView!
     
@@ -36,14 +40,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         semesterPicker.delegate = self
         semesterPicker.dataSource = self
     }
-
-
+    
+    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
         return 1
     }
-
+    
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
@@ -56,7 +60,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return listOdSemesters[row]
     }
     
-   
+    
     
     @IBAction func cancelClicked(_ sender: Any) {
         delegate?.addingDidCancled()
@@ -64,11 +68,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     
-    @IBAction func saveNewStudent(_ sender: Any) {
-        
-        var selectedSemesterID = semesterPicker.selectedRow(inComponent: 0)
-
-        
+    
+    func isValidInput()->Bool {
+        var isvalid = false
         if let goodID = stdID.text {
             if let goodName = stdName.text {
                 if let goodProgram = stdProgram.text {
@@ -76,30 +78,61 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     if !goodID.isEmpty {
                         if !goodName.isEmpty {
                             if !goodProgram.isEmpty {
-                                if let goodInt = Int(goodID) {
-                                    var newStudent = Student(ID: goodInt , name: goodName, program: goodProgram, semester: listOdSemesters[selectedSemesterID])
-                                    
-                                    delegate?.addingDidFinishedCorrectly(newStd: newStudent)
-                                    
-                                    dismiss(animated: true)
-
-                                    
+                                if let goodInt = Int(goodID)
+                                {
+                                    std_ID = goodInt
+                                    std_program = goodProgram
+                                    std_name = goodName
+                                    isvalid = true
                                 }
                             }
                         }
                     }
-                    
-                    
                 }
+            }
+        }
+        return isvalid
+    }
+    
+    
+    
+    
+    
+    @IBAction func saveNewStudent(_ sender: Any) {
+        
+        var selectedSemesterID = semesterPicker.selectedRow(inComponent: 0)
+        
+        if (isValidInput()){
+            let newStudent = Student(ID: std_ID , name: std_name, program: std_program, semester: listOdSemesters[selectedSemesterID])
+            
+            delegate?.addingDidFinishedCorrectly(newStd: newStudent)
+            dismiss(animated: true)
+        }else {
+            // display an alert
+            var alert = UIAlertController(title: "Input Error!", message: "One or more value is not correct", preferredStyle: .actionSheet)
+            
+            var alertAction = UIAlertAction(title: "OK", style: .destructive) { alert in
+                print("OK clicked")
                 
             }
+            var alertAction2 = UIAlertAction(title: "Cancel", style: .cancel) { alert in
+                print("Cancel Clicked")
+            }
+            
+            alert.addAction(alertAction)
+            alert.addAction(alertAction2)
+            present(alert, animated: true)
             
         }
         
         
-        
-        
     }
+
+        
+        
+        
+        
+    
     
     
     

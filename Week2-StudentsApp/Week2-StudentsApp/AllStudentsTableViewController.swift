@@ -8,8 +8,6 @@
 import UIKit
 
 class AllStudentsTableViewController: UITableViewController, AddingStudentDelegateProtocol {
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
