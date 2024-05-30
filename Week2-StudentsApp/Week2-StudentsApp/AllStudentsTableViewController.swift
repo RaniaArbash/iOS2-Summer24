@@ -35,8 +35,8 @@ class AllStudentsTableViewController: UITableViewController, AddingStudentDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! StudentTableViewCell
         
         
-        cell.stdImage.layer.cornerRadius = 20;
-        cell.stdImage.clipsToBounds = true;
+        cell.layer.masksToBounds = true
+        cell.layer.cornerRadius = 8
         
         cell.stdName.text = (UIApplication.shared.delegate as! AppDelegate).allStudents[indexPath.row].name
         
@@ -51,7 +51,7 @@ class AllStudentsTableViewController: UITableViewController, AddingStudentDelega
     
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 200
     }
     
     func addingDidFinishedCorrectly(newStd: Student) {

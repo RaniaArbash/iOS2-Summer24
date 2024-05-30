@@ -20,11 +20,14 @@ class StudentTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        stdImage.layer.cornerRadius = 20;
-        stdImage.clipsToBounds = true;
+        
     }
     
-    
+    override func layoutSubviews() {
+     super.layoutSubviews()
+     self.stdImage.layer.cornerRadius = self.stdImage.frame.width / 2
+     self.stdImage.clipsToBounds = true
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
