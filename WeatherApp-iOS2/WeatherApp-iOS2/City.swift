@@ -11,6 +11,13 @@ class City : Decodable {
     var name: String = ""
     var state: String = ""
     var country : String = ""
+    
+    init(name: String, state: String, country: String) {
+        self.name = name
+        self.state = state
+        self.country = country
+    }
+    
 }
 
 

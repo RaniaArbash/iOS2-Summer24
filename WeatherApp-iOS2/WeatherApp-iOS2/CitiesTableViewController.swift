@@ -7,18 +7,16 @@
 
 import UIKit
 
-class CitiesTableViewController: UITableViewController, UISearchBarDelegate {
+class CitiesTableViewController: UITableViewController, UISearchBarDelegate, NetworkingDelegate {
 
     @IBOutlet weak var searchbar: UISearchBar!
-   
-    
     var citiesList = [City]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchbar.delegate = self
+        NetworkingService.shared.delegate = self
     }
-
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -42,11 +40,25 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate {
         // start the search
         
         if (searchText.count >= 3){
-            NetworkingService.shared.getCitiesFromAPI(searchText: searchText)
-            print(searchText)
+             NetworkingService.shared.getCitiesFromAPI(searchText: searchText)
+        }else {
+            citiesList = [City]()
+            tableView.reloadData()
+            
         }
         
     }
+    
+    
+    func networkingDidFinishWithCityList(cities : [City]){
+        citiesList = cities
+        tableView.reloadData()
+    }
+    
+    func networkingDidFail() {
+        
+    }
+    
     
     /*
     // Override to support conditional editing of the table view.

@@ -7,10 +7,8 @@
 import Foundation
 
 protocol NetworkingDelegate{
-    
-    func networkingDidFinishWithModel()
+    func networkingDidFinishWithCityList(cities : [City])
     func networkingDidFail()
-    
 }
 
 class NetworkingService {
@@ -19,9 +17,8 @@ class NetworkingService {
     
     var delegate : NetworkingDelegate?
     
-    func getCitiesFromAPI(searchText : String){
-        
-       
+    func getCitiesFromAPI(searchText : String) {
+    
         let urlObj = URL(string:"http://gd.geobytes.com/AutoCompleteCity?&q=\(searchText)")!
         
         // this dataTask runs in background thread.
@@ -48,12 +45,16 @@ class NetworkingService {
 
                     let decoder = JSONDecoder()
                     
-                    let citiesList = try decoder.decode([String].self, from: goodData)
+                    var citiesList = try decoder.decode([String].self, from: goodData)
+                    let citiesObjects = self.createCityList(citiesList: citiesList)
+                            
                     print(citiesList.count)
                     
+                   
+                    
                     DispatchQueue.main.async {
-                  //      self.delegate?.networkingDidFinishWithModel(studentData: studentModel)
-
+                        self.delegate?.networkingDidFinishWithCityList(cities: citiesObjects)
+                    
                     }
         
             
@@ -73,5 +74,22 @@ class NetworkingService {
        
     }
     
+    
+    func createCityList(citiesList : [String])->[City]{
+        var citiesObjects = [City]()
+       
+        for city in citiesList {
+            var newparts = [String]()
+            var parts = city.components(separatedBy: ",")
+            for part in parts {
+                newparts.append(part.trimmingCharacters(in: .whitespaces))
+            }
+            
+            var cityObj = City(name: newparts[0], state: newparts[1], country: newparts[2])
+            citiesObjects.append(cityObj)
+            
+        }
+        return citiesObjects
+    }
     
 }
