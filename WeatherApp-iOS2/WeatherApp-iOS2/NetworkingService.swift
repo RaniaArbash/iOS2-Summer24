@@ -1,28 +1,29 @@
 //
 //  NetworkingService.swift
-//  Week5-Networking
+//  WeatherApp-iOS2
 //
-//  Created by Rania Arbash on 2024-06-06.
+//  Created by Rania Arbash on 2024-06-13.
 //
-
 import Foundation
 
 protocol NetworkingDelegate{
     
-    func networkingDidFinishWithModel(studentData: Model)
+    func networkingDidFinishWithModel()
     func networkingDidFail()
     
 }
 
 class NetworkingService {
     
+    static var shared = NetworkingService()
+    
     var delegate : NetworkingDelegate?
     
-    func getCoursedDataFromAPI(){
+    func getCitiesFromAPI(searchText : String){
         
        
-        let urlObj = URL(string: "https://raw.githubusercontent.com/RaniaArbash/Networking_IOS/main/courses_data.json")!
-    
+        let urlObj = URL(string:"http://gd.geobytes.com/AutoCompleteCity?&q=\(searchText)")!
+        
         // this dataTask runs in background thread.
         let task = URLSession.shared.dataTask(with: urlObj) { data, response, error in
             // if there is any error
@@ -44,15 +45,14 @@ class NetworkingService {
             
             if let goodData = data {
                 do {
-//                    var jsonString = String(data: data!, encoding: .utf8)
-//                    print(jsonString)
-//
+
                     let decoder = JSONDecoder()
                     
-                    let studentModel = try decoder.decode(Model.self, from: goodData)
-                   
+                    let citiesList = try decoder.decode([String].self, from: goodData)
+                    print(citiesList.count)
+                    
                     DispatchQueue.main.async {
-                        self.delegate?.networkingDidFinishWithModel(studentData: studentModel)
+                  //      self.delegate?.networkingDidFinishWithModel(studentData: studentModel)
 
                     }
         
