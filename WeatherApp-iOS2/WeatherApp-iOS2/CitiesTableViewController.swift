@@ -56,7 +56,8 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate, Net
     }
     
     func networkingDidFail() {
-        
+        // alert
+        print ("Networking error")
     }
     
     
