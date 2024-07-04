@@ -8,6 +8,7 @@ func takeTimeFunction (completionHandler: @escaping (String)->Void ){
     myQ.async {
         Thread.sleep(forTimeInterval: 30)// I don't know the time
         completionHandler("Done")
+        
     }
     
  //  Thread.sleep(forTimeInterval: 30)// I don't know the time

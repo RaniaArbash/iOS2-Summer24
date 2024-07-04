@@ -24,16 +24,33 @@ class WeatherViewController: UIViewController {
     var selectedCity : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = selectedCity
+        
         NetworkingService.shared.getWeatherInCity(city: selectedCity) { wo in
             self.descText.text = wo.weather[0].description
             self.tempText.text = "\(wo.main.temp)"
             self.feelsLikeText.text = "\(wo.main.feels_like)"
-//            var icon = wo.weather[0].icon
-//            var url = "https://openweathermap.org/img/wn/\(icon)@2x.png"
-//            var imageData =  Data(contentsOf: URL(string: url)!)
-       //     weatherImage.image = UIImage(data: imageData)
-        }
+            var icon = wo.weather[0].icon
 
+            self.downloadTheImage(icon: icon)
+        }
+    }
+    
+    func downloadTheImage(icon:String) {
+        var url = "https://openweathermap.org/img/wn/\(icon)@2x.png"
+        var myQ = DispatchQueue(label: "MyQ")
+        myQ.async {
+            do {
+                var imageData =  try Data(contentsOf: URL(string: url)!)
+                DispatchQueue.main.async {
+                    self.weatherImage.image = UIImage(data: imageData)
+                }
+            
+            }catch {
+                print (error)
+            }
+        }
+        
     }
     
 
