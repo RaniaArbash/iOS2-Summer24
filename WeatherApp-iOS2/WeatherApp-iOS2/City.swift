@@ -18,6 +18,10 @@ class City : Decodable {
         self.country = country
     }
     
+    func toString()->String {
+        
+        return "\(name),\(state),\(country)"
+    }
 }
 
 
