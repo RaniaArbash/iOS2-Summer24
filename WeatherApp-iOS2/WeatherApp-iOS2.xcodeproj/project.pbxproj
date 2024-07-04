@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		210575FE2C36CCDF00FA73E1 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210575FD2C36CCDF00FA73E1 /* WeatherModel.swift */; };
+		210576002C36DAC900FA73E1 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210575FF2C36DAC900FA73E1 /* WeatherViewController.swift */; };
 		21418F6F2C1B1F0600B526BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21418F6E2C1B1F0600B526BE /* AppDelegate.swift */; };
 		21418F712C1B1F0600B526BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21418F702C1B1F0600B526BE /* SceneDelegate.swift */; };
 		21418F762C1B1F0600B526BE /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 21418F752C1B1F0600B526BE /* Base */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		210575FD2C36CCDF00FA73E1 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		210575FF2C36DAC900FA73E1 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		21418F6B2C1B1F0600B526BE /* WeatherApp-iOS2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WeatherApp-iOS2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21418F6E2C1B1F0600B526BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21418F702C1B1F0600B526BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				21418F842C1B209A00B526BE /* City.swift */,
 				21418F862C1B229900B526BE /* NetworkingService.swift */,
 				210575FD2C36CCDF00FA73E1 /* WeatherModel.swift */,
+				210575FF2C36DAC900FA73E1 /* WeatherViewController.swift */,
 			);
 			path = "WeatherApp-iOS2";
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 				21418F6F2C1B1F0600B526BE /* AppDelegate.swift in Sources */,
 				21418F712C1B1F0600B526BE /* SceneDelegate.swift in Sources */,
 				21418F852C1B209A00B526BE /* City.swift in Sources */,
+				210576002C36DAC900FA73E1 /* WeatherViewController.swift in Sources */,
 				210575FE2C36CCDF00FA73E1 /* WeatherModel.swift in Sources */,
 				21418F832C1B1F7A00B526BE /* CitiesTableViewController.swift in Sources */,
 			);

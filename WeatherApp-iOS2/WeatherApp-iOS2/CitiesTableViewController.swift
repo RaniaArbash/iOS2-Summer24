@@ -61,14 +61,21 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate, Net
     }
     
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        NetworkingService.shared.getWeatherInCity(city: citiesList[indexPath.row].toString()) { wo in
-             print( wo.weather[0].description)
-           var icon = wo.weather[0].icon
-            var url = "https://openweathermap.org/img/wn/\(icon)@2x.png"
-            var imageData =  Data(contentsOf: URL(url))
-        }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        NetworkingService.shared.getWeatherInCity(city: citiesList[indexPath.row].toString()) { wo in
+//             print( wo.weather[0].description)
+//           var icon = wo.weather[0].icon
+//            var url = "https://openweathermap.org/img/wn/\(icon)@2x.png"
+//            var imageData =  Data(contentsOf: URL(string: url)!)
+//        }
+//    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var wVC = segue.destination as! WeatherViewController
+        var i = tableView.indexPathForSelectedRow!.row
+        wVC.selectedCity = citiesList[i].toString()
     }
+    
     
     /*
     // Override to support conditional editing of the table view.
