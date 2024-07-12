@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  WeatherApp-iOS2
+//  AutoLayout
 //
-//  Created by Rania Arbash on 2024-06-13.
+//  Created by Rania Arbash on 2024-07-04.
 //
 
 import UIKit
@@ -10,8 +10,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let myNotification = Notification.Name("citiesNotification")
-    
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

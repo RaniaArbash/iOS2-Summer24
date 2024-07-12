@@ -12,12 +12,25 @@ class CitiesTableViewController: UITableViewController, UISearchBarDelegate, Net
     @IBOutlet weak var searchbar: UISearchBar!
     var citiesList = [City]()
     
+    let myNotification = (UIApplication.shared.delegate as! AppDelegate).myNotification
+    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         searchbar.delegate = self
         NetworkingService.shared.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(listOfCityIsReady(_:)), name: myNotification, object: nil)
     }
-
+    
+    @objc
+    func listOfCityIsReady(_ n: Notification){
+        let cities =  n.object as! [City]
+        citiesList = cities
+        tableView.reloadData()
+    }
+   
+                                               
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

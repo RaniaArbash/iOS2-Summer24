@@ -26,14 +26,36 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         self.title = selectedCity
         
-        NetworkingService.shared.getWeatherInCity(city: selectedCity) { wo in
-            self.descText.text = wo.weather[0].description
-            self.tempText.text = "\(wo.main.temp)"
-            self.feelsLikeText.text = "\(wo.main.feels_like)"
-            var icon = wo.weather[0].icon
-
-            self.downloadTheImage(icon: icon)
+        // Calling getWeatherInCity with Result completion handler
+        NetworkingService.shared.getWeatherInCity(city: selectedCity) { result in
+            switch result {
+            case .success(let wo):
+                self.descText.text = wo.weather[0].description
+                           self.tempText.text = "\(wo.main.temp)"
+                           self.feelsLikeText.text = "\(wo.main.feels_like)"
+                let icon = wo.weather[0].icon
+                           self.downloadTheImage(icon: icon)
+                            break
+                
+            case .failure(let error):
+                print(error)
+                break
+            
+            }
+            
+            
         }
+        
+        
+        // Calling getWeatherInCity with normal completion handler
+//        NetworkingService.shared.getWeatherInCity(city: selectedCity) { wo in
+//            self.descText.text = wo.weather[0].description
+//            self.tempText.text = "\(wo.main.temp)"
+//            self.feelsLikeText.text = "\(wo.main.feels_like)"
+//            var icon = wo.weather[0].icon
+//
+//            self.downloadTheImage(icon: icon)
+//        }
     }
     
     func downloadTheImage(icon:String) {
